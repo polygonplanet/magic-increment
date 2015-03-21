@@ -1,0 +1,26 @@
+{
+  "name": "magic-increment",
+  "main": "magic-increment.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/polygonplanet/magic-increment",
+  "authors": [
+    "polygonplanet <polygon.planet.aqua@gmail.com>"
+  ],
+  "description": "Incrementation and decrementation for strings.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "increment", "decrement", "string"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

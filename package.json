@@ -1,0 +1,29 @@
+{
+  "name": "magic-increment",
+  "version": "0.1.0",
+  "description": "Incrementation and decrementation for strings.",
+  "main": "magic-increment.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": ""
+  },
+  "scripts": {
+    "test": "mocha tests/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polygonplanet/magic-increment.git"
+  },
+  "keywords": [
+    "increment", "decrement", "string"
+  ],
+  "author": "polygon planet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/polygonplanet/magic-increment/issues"
+  },
+  "homepage": "https://github.com/polygonplanet/magic-increment"
+}

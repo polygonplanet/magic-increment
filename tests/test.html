@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Magic Increment and Decrement Test</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<style>
+.header {
+  margin-bottom: 2em;
+}
+
+.row {
+  margin-bottom: 1em;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="../magic-increment.js"></script>
+<script>
+$(function() {
+  'use strict';
+
+  var AppModel = Backbone.Model.extend({
+    defaults: {
+      input: ''
+    },
+    validate: function(attrs) {
+      if (!/^[a-zA-Z0-9]+$/.test(attrs.input)) {
+        return 'Input must contain only letters and numbers [a-zA-Z0-9].';
+      }
+    }
+  });
+
+  var AppView = Backbone.View.extend({
+    el: '.container',
+    events: {
+      'keyup #input': 'onInputChange',
+      'click #inc': 'onIncClick',
+      'click #dec': 'onDecClick',
+      'click #auto': 'onAutoClick'
+    },
+    initialize: function() {
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
+
+      this.$input = this.$el.find('#input');
+      this.$invalid = this.$el.find('#invalid');
+      this.$inc = this.$el.find('#inc');
+      this.$dec = this.$el.find('#dec');
+      this.$auto = this.$el.find('#auto');
+      this.$error = this.$el.find('#error');
+
+      this.listenTo(this.model, 'invalid', this.onInvalid);
+
+      this.running = false;
+      this.update();
+    },
+    onInvalid: function(model, error, options) {
+      this.$invalid.text(error);
+    },
+    onInputChange: function() {
+      var value = this.$input.val();
+      var invalid = !this.model.set({ input: value }, { validate: true });
+
+      if (!invalid) {
+        this.$invalid.text('');
+      }
+
+      this.$inc.prop('disabled', invalid);
+      this.$dec.prop('disabled', invalid);
+      this.$auto.prop('disabled', invalid);
+    },
+    onIncClick: function() {
+      var value = this.model.get('input');
+      var result = MagicIncrement.inc(value);
+      var prev = MagicIncrement.dec(result);
+
+      this.$input.val(result);
+
+      if (prev === value) {
+        this.$error.text('');
+      } else {
+        this.$error.text(prev + ' != ' + value);
+        this.stop();
+      }
+      this.update();
+    },
+    onDecClick: function() {
+      var value = this.model.get('input');
+      var result = MagicIncrement.dec(value);
+      var next = MagicIncrement.inc(result);
+
+      this.$input.val(result);
+
+      if (result !== value) {
+        if (next === value) {
+          this.$error.text('');
+        } else {
+          this.$error.text(next + ' != ' + value);
+          this.stop();
+        }
+      }
+      this.update();
+    },
+    onAutoClick: function() {
+      if (this.running) {
+        this.stop();
+      } else {
+        this.start();
+        this.run();
+      }
+    },
+    run: function() {
+      if (this.running) {
+        this.onIncClick();
+        setTimeout(this.run, 0);
+      }
+    },
+    start: function() {
+      this.running = true;
+      this.$auto.text('stop');
+      this.$inc.prop('disabled', true);
+      this.$dec.prop('disabled', true);
+    },
+    stop: function() {
+      this.running = false;
+      this.$auto.text('auto');
+      this.$inc.prop('disabled', false);
+      this.$dec.prop('disabled', false);
+    },
+    update: function() {
+      this.model.set({ input: this.$input.val() });
+    }
+  });
+
+  new AppView({ model: new AppModel() });
+});
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>String Magic Increment and Decrement in JavaScript</h1>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <label>
+          Input
+        </label>
+        <input class="form-control" type="text" id="input" value="a">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 text-danger" id="invalid"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <button class="btn btn-primary" id="inc" title="Increment">inc</button>
+        <button class="btn btn-primary" id="dec" title="Decrement">dec</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <button class="btn btn-success" id="auto" title="Increment automatically">auto</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="text-danger" id="error"></div>
+      </div>
+    </div>
+    <hr>
+    <div class="footer">
+      <a href="https://github.com/polygonplanet/magic-increment">Repository in GitHub</a>
+    </div>
+  </div>
+</body>
+</html>
