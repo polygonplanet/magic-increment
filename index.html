@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Magic-increment : Incrementation and decrementation for strings.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Magic-increment</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/polygonplanet/magic-increment">View on GitHub</a>
+
+          <h1 id="project_title">Magic-increment</h1>
+          <h2 id="project_tagline">Incrementation and decrementation for strings.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/polygonplanet/magic-increment/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/polygonplanet/magic-increment/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="magic-increment" class="anchor" href="#magic-increment" aria-hidden="true"><span class="octicon octicon-link"></span></a>magic-increment</h1>
+
+<p><a href="https://travis-ci.org/polygonplanet/magic-increment"><img src="https://travis-ci.org/polygonplanet/magic-increment.svg?branch=master" alt="Build Status"></a></p>
+
+<p>Incrementation and decrementation for strings.  </p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<h4>
+<a id="in-browser" class="anchor" href="#in-browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>In Browser:</h4>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>magic-increment.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>magic-increment.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>Object <strong>MagicIncrement</strong> will defined in the global scope.</p>
+
+<h4>
+<a id="in-nodejs" class="anchor" href="#in-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>In Node.js:</h4>
+
+<div class="highlight highlight-bash"><pre>npm install magic-increment</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> MagicIncrement <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>magic-increment<span class="pl-pds">'</span></span>);</pre></div>
+
+<h4>
+<a id="bower" class="anchor" href="#bower" aria-hidden="true"><span class="octicon octicon-link"></span></a>bower:</h4>
+
+<div class="highlight highlight-bash"><pre>bower install magic-increment</pre></div>
+
+<h3>
+<a id="inc" class="anchor" href="#inc" aria-hidden="true"><span class="octicon octicon-link"></span></a>inc</h3>
+
+<ul>
+<li>{<em>string</em>} MagicIncrement.<strong>inc</strong> ( value )<br>
+Increment the argument value.<br>
+This incrementation uses alphabets [a-z] + [A-Z] and digits [0-9].<br>
+<a href="https://github.com/param" class="user-mention">@param</a> {<em>string</em>} <em>value</em> The value to increment.<br>
+<a href="https://github.com/return" class="user-mention">@return</a> {<em>string</em>} Return the incremented value.</li>
+</ul>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.inc(<span class="pl-s"><span class="pl-pds">'</span>99<span class="pl-pds">'</span></span>)); <span class="pl-c">// '100'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.inc(<span class="pl-s"><span class="pl-pds">'</span>zz<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'aaa'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.inc(<span class="pl-s"><span class="pl-pds">'</span>a0<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'a1'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.inc(<span class="pl-s"><span class="pl-pds">'</span>Az<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'Ba'</span></pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> s <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>X<span class="pl-pds">'</span></span>;
+<span class="pl-k">for</span> (<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>; i <span class="pl-k">&lt;</span> <span class="pl-c1">10</span>; i<span class="pl-k">++</span>) {
+  s <span class="pl-k">=</span> MagicIncrement.inc(s);
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(s);
+}
+<span class="pl-c">// Y</span>
+<span class="pl-c">// Z</span>
+<span class="pl-c">// AA</span>
+<span class="pl-c">// AB</span>
+<span class="pl-c">// AC</span>
+<span class="pl-c">// AD</span>
+<span class="pl-c">// AE</span>
+<span class="pl-c">// AF</span>
+<span class="pl-c">// AG</span>
+<span class="pl-c">// AH</span></pre></div>
+
+<h3>
+<a id="dec" class="anchor" href="#dec" aria-hidden="true"><span class="octicon octicon-link"></span></a>dec</h3>
+
+<ul>
+<li>{<em>string</em>} MagicIncrement.<strong>dec</strong> ( value )<br>
+Decrement the argument value.<br>
+This decrementation uses alphabets [a-z] + [A-Z] and digits [0-9].<br>
+<a href="https://github.com/param" class="user-mention">@param</a> {<em>string</em>} <em>value</em> The value to decrement.<br>
+<a href="https://github.com/return" class="user-mention">@return</a> {<em>string</em>} Return the decremented value.</li>
+</ul>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.dec(<span class="pl-s"><span class="pl-pds">'</span>100<span class="pl-pds">'</span></span>)); <span class="pl-c">// '99'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.dec(<span class="pl-s"><span class="pl-pds">'</span>aaa<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'zz'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.dec(<span class="pl-s"><span class="pl-pds">'</span>a1<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'a0'</span>
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(MagicIncrement.dec(<span class="pl-s"><span class="pl-pds">'</span>Ba<span class="pl-pds">'</span></span>)); <span class="pl-c">// 'Az'</span></pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> s <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>AC<span class="pl-pds">'</span></span>;
+<span class="pl-k">for</span> (<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>; i <span class="pl-k">&lt;</span> <span class="pl-c1">10</span>; i<span class="pl-k">++</span>) {
+  s <span class="pl-k">=</span> MagicIncrement.dec(s);
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(s);
+}
+<span class="pl-c">// AB</span>
+<span class="pl-c">// AA</span>
+<span class="pl-c">// Z</span>
+<span class="pl-c">// Y</span>
+<span class="pl-c">// X</span>
+<span class="pl-c">// W</span>
+<span class="pl-c">// V</span>
+<span class="pl-c">// U</span>
+<span class="pl-c">// T</span>
+<span class="pl-c">// S</span></pre></div>
+
+<h3>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h3>
+
+<p><a href="http://polygonplanet.github.io/magic-increment/tests/magic-increment-test.html">Test for Magic Increment (Demo)</a></p>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>MIT</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Magic-increment maintained by <a href="https://github.com/polygonplanet">polygonplanet</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
