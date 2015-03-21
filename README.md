@@ -75,7 +75,7 @@ for (var i = 0; i < 10; i++) {
 
 * {_string_} MagicIncrement.**dec** ( value )  
   Decrement the argument value.  
-  This incrementation uses alphabets [a-z] + [A-Z] and digits [0-9].  
+  This decrementation uses alphabets [a-z] + [A-Z] and digits [0-9].  
   @param {_string_} _value_ The value to decrement.  
   @return {_string_} Return the decremented value.
 
